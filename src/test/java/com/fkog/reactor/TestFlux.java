@@ -1,6 +1,7 @@
 package com.fkog.reactor;
 
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -55,18 +56,23 @@ public class TestFlux {
 		Flux slowFlux = Flux.interval(Duration.ofSeconds(2)).map(tick -> "slow " + tick);
 
 		Flux clock = Flux.merge(fastFlux.filter(tick -> isFastClock()), slowFlux.filter(tick -> isSlowClock()));
-		
-		clock.subscribe(System.out::println);
+
+//		clock.subscribe(System.out::println);
+
+		Flux feeds = Flux.interval(Duration.ofSeconds(1)).map(tick -> LocalTime.now());
+
+		clock.withLatestFrom(feeds, (tick, feed) -> tick + " " + feed).subscribe(System.out::println);
+
 	}
 
 	private boolean isSlowClock() {
-		return false;
+		return true;
 	}
 
 	private boolean isFastClock() {
 		return true;
 	}
-	
+
 	@AfterEach
 	public void after() throws InterruptedException {
 		TimeUnit.SECONDS.sleep(10);
