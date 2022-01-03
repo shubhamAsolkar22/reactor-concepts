@@ -58,7 +58,7 @@ public class StretchlyApp {
 	}
 
 	private void snooze(long minutesPassed) {
-		if(!jframe.isVisible()) {
+		if(!jframe.isVisible()) { 
 			jframe.setVisible(true);
 			label.setText("Take rest! "+minutesPassed+" minutes passed.");
 		}
