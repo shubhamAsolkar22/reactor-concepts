@@ -13,54 +13,49 @@ import javax.swing.JPanel;
 
 public class StretchlyApp {
 	private JFrame jframe = new JFrame();
-	private JButton button = new JButton("dismiss");
-	private JLabel label = new JLabel("Take a break!");
+	private final BreakPrompt breakPrompt;
+	private final DismissButton dismissButton;
 	
-	private StretchlyApp() {
+	private StretchlyApp(BreakPrompt breakPrompt, DismissButton dismissButton) {
+		this.breakPrompt = breakPrompt;
+		this.dismissButton = dismissButton;
+	}
+	
+	private void init() {
 		jframe.setLayout(new FlowLayout());
 		jframe.setSize(400, 100);
-		jframe.add(label);
-		button.addActionListener(new ActionListener() {
+		jframe.add(breakPrompt.getJlabel());
+		dismissButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dismiss();
 			}
 		});
-		jframe.add(button);
+		jframe.add(dismissButton.getJButton());
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(false);
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		StretchlyApp app = new StretchlyApp();
+		StretchlyApp app = new StretchlyApp(BreakPromptImpl.getInstance(new JLabel()),DismissButtonImpl.getInstance(new JButton()));
+		app.init();
 		int minutes = 1;//args == null ? 1 : Integer.valueOf(args[0]);
-		boolean x = true;
 		long displayMinutes = 0;
-		long starttime = System.currentTimeMillis();
-		System.out.println("Timer:");
-		while (x) {
-			TimeUnit.SECONDS.sleep(1);
-			long timepassed = System.currentTimeMillis() - starttime;
-			long secondspassed = timepassed / 1000;
-			if (secondspassed == 60) {
-				secondspassed = 0;
-				starttime = System.currentTimeMillis();
-			}
-			if ((secondspassed % 60 * minutes) == 0) {
+		System.out.println("Timer started");
+		while (true) {
+			TimeUnit.SECONDS.sleep(10);
 				displayMinutes++;
 				app.snooze(displayMinutes);
-			}
 
-			System.out.println(displayMinutes + "::" + secondspassed);
 		}
 	}
 
 	private void snooze(long minutesPassed) {
+		breakPrompt.resetText("Take rest! "+minutesPassed+" minutes passed.");
 		if(!jframe.isVisible()) { 
 			jframe.setVisible(true);
-			label.setText("Take rest! "+minutesPassed+" minutes passed.");
 		}
 	}
 	
