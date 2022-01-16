@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -27,12 +28,12 @@ public class BasicConnectionPoolUnitTest {
     @Test
     public void givenBasicConnectionPoolInstance_whenCalledreleaseConnection_thenCorrect() throws Exception {
         Connection connection = connectionPool.getConnection();
-        assertThat(connectionPool.releaseConnection(connection)).isTrue();
+        assertTrue(connectionPool.releaseConnection(connection));
     }
     
     @Test
     public void givenBasicConnectionPoolInstance_whenCalledgetUrl_thenCorrect() {
-        assertThat(connectionPool.getUrl()).isEqualTo("jdbc:h2:mem:test");
+        assertEquals(connectionPool.getUrl(),"jdbc:h2:mem:test");
     }
     
     @Test

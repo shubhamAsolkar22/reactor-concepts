@@ -3,8 +3,8 @@ package com.fkog.jdbc.example;
 import java.util.Objects;
 
 public class PersonImpl implements Person {
-	private int id;
-    private String name;
+	private final int id;
+    private final String name;
 
     public PersonImpl(int id, String name) {
         this.id = id;
@@ -17,18 +17,8 @@ public class PersonImpl implements Person {
     }
 
     @Override
-	public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
 	public String getName() {
         return name;
-    }
-
-    @Override
-	public void setName(String name) {
-        this.name = name;
     }
 
 	@Override

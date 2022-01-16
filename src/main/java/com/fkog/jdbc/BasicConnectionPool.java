@@ -16,8 +16,17 @@ public class BasicConnectionPool implements ConnectionPool {
     private static final int INITIAL_POOL_SIZE = 10;
     private static final int MAX_POOL_SIZE = 20;
     private static final int MAX_TIMEOUT = 5;
+    
+    static {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+    }
 
     public static BasicConnectionPool create(String url, String user, String password) throws SQLException {
+
         List<Connection> pool = new ArrayList<>(INITIAL_POOL_SIZE);
         for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
             pool.add(createConnection(url, user, password));
@@ -89,6 +98,11 @@ public class BasicConnectionPool implements ConnectionPool {
     
     @Override
     public void shutdown() throws SQLException {
+    	
+    	connectionPool.addAll(usedConnections);
+    	
+    	usedConnections.clear();
+    	
         usedConnections.forEach(this::releaseConnection);
         for (Connection c : connectionPool) {
             c.close();
