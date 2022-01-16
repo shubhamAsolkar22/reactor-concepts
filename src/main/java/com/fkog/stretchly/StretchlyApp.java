@@ -39,7 +39,7 @@ public class StretchlyApp {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		StretchlyApp app = new StretchlyApp(BreakPromptImpl.getInstance(new JLabel()),DismissButtonImpl.getInstance(new JButton()));
+		StretchlyApp app = new StretchlyApp(BreakPromptImpl.getInstance(),DismissButtonImpl.getInstance());
 		app.init();
 		int minutes = 1;//args == null ? 1 : Integer.valueOf(args[0]);
 		long displayMinutes = 0;

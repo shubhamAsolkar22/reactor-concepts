@@ -4,14 +4,13 @@ import javax.swing.JLabel;
 
 class BreakPromptImpl implements BreakPrompt {
 
-	private final JLabel label;
+	private final JLabel label = new JLabel();
 
-	private BreakPromptImpl(JLabel label) {
-		this.label = label;
+	private BreakPromptImpl() {
 	}
 
-	static BreakPrompt getInstance(JLabel label) {
-		return new BreakPromptImpl(label);
+	static BreakPrompt getInstance() {
+		return new BreakPromptImpl();
 	}
 	
 	@Override

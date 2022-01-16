@@ -10,7 +10,7 @@ class DismissButtonImpl implements DismissButton{
 	private DismissButtonImpl() {
 	}
 	
-	static DismissButton getInstance(JButton jButton) {
+	static DismissButton getInstance() {
 		return new DismissButtonImpl();
 	}
 	
