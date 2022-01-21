@@ -103,7 +103,6 @@ public class BasicConnectionPool implements ConnectionPool {
     	
     	usedConnections.clear();
     	
-        usedConnections.forEach(this::releaseConnection);
         for (Connection c : connectionPool) {
             c.close();
         }
