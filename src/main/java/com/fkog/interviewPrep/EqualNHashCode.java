@@ -3,6 +3,7 @@ package com.fkog.interviewPrep;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class EqualNHashCode {
 	public static void main(String[] args) {
@@ -17,6 +18,13 @@ public class EqualNHashCode {
 		set.add(p2);
 		
 		System.out.println(set.size());
+//		Predicate<String> p = e -> e.length()>2;
+//		System.err.println(p.test("sdasdas"));
+//		m1();
+	}
+	
+	static void m1(int a){
+		System.out.println("int "+a);
 	}
 }
 
