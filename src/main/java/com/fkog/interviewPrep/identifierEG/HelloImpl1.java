@@ -1,10 +1,10 @@
 package com.fkog.interviewPrep.identifierEG;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+//import org.springframework.context.annotation.Scope;
+//import org.springframework.stereotype.Component;
 
-@Component(value = "default")
-@Scope("singleton")
+//@Component(value = "default")
+//@Scope("singleton")
 public class HelloImpl1 implements Hello {
 	private String  abc;
 	

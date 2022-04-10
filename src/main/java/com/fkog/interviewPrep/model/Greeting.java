@@ -1,8 +1,8 @@
 package com.fkog.interviewPrep.model;
 
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Greeting {
 	private final long id;
 	private final String content;

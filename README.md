@@ -1,2 +1,2 @@
 # reactor-concepts
-Project for exploring reactive programming with project reactor.
+This is actually a rough book for practicing java related concepts.
