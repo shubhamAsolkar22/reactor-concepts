@@ -1,5 +1,5 @@
 package com.fkog.gitPractise;
 
 public class ClassAddedAfterBranchCreation {
-    // some changes from master branch
+    //added from  branch git-practise
 }
