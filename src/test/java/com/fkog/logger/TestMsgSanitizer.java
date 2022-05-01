@@ -1,16 +1,15 @@
 package com.fkog.logger;
 
 
-//import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-//import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestMsgSanitizer {
-//
-//	@Test
-//	public void t1() {
-//		MsgSanitizer jsSanitizer = JsMsgSanitizer.getInstance();
-//		System.err.println(jsSanitizer.getSanitizedString("< scriipt>"));
-//		assertEquals("&lt; script&gt;",jsSanitizer.getSanitizedString("< script>"));
-//	}
+	@Test
+	public void t1() {
+		MsgSanitizer jsSanitizer = JsMsgSanitizer.getInstance();
+		assertThat(jsSanitizer.sanitize("< script>")).isEqualTo("&lt; script&gt;");
+	}
 }
